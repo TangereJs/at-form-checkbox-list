@@ -310,13 +310,14 @@
         for (var i = 0; i < len; i++) {
           item = splitItems[i];
           item = item.trim();
+          if (!item.length) continue;
           result.push({
             value: item,
             title: item
           });
         }
 
-      } else if (this._isString(object)) {
+      } else if (this._isString(object) && object.length) {
         result.push({
           value: object,
           title: object

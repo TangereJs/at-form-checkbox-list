@@ -1,0 +1,1755 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+  <title>at-form-checkbox-list tests</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../iron-test-helpers/test-helpers.js"></script>
+  <script src="../../iron-test-helpers/mock-interactions.js"></script>
+
+  <link rel="import" href="../at-form-checkbox-list.html">
+</head>
+
+<body>
+
+  <test-fixture id="initial">
+    <template>
+      <at-form-checkbox-list></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+
+  <!-- 
+    label fixtures 
+  -->
+  <test-fixture id="labelIsUndefined">
+    <template>
+      <at-form-checkbox-list label="undefined"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="labelIsNull">
+    <template>
+      <at-form-checkbox-list label="null"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="labelIsTrue">
+    <template>
+      <at-form-checkbox-list label="true"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="labelIsFalse">
+    <template>
+      <at-form-checkbox-list label="false"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="labelIs-42">
+    <template>
+      <at-form-checkbox-list label="-42"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="labelIs0">
+    <template>
+      <at-form-checkbox-list label="0"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="labelIs42">
+    <template>
+      <at-form-checkbox-list label="42"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="labelIsEmpty">
+    <template>
+      <at-form-checkbox-list label=""></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="labelIsLorem_ipsum">
+    <template>
+      <at-form-checkbox-list label="lorem ipsum"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="labelIs{}">
+    <template>
+      <at-form-checkbox-list label="{}"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="labelIs[]">
+    <template>
+      <at-form-checkbox-list label="[]"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="labelIsFunction">
+    <template>
+      <at-form-checkbox-list label="function f() { return undefined; }"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+
+  <!-- 
+    hideLabel fixtures 
+  -->
+  <test-fixture id="hideLabelIsUndefined">
+    <template>
+      <at-form-checkbox-list hide-label="undefined"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideLabelIsNull">
+    <template>
+      <at-form-checkbox-list hide-label="null"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideLabelIsTrue">
+    <template>
+      <at-form-checkbox-list hide-label="true"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideLabelIsFalse">
+    <template>
+      <at-form-checkbox-list hide-label="false"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideLabelIs-42">
+    <template>
+      <at-form-checkbox-list hide-label="-42"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideLabelIs0">
+    <template>
+      <at-form-checkbox-list hide-label="0"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideLabelIs42">
+    <template>
+      <at-form-checkbox-list hide-label="42"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideLabelIsEmpty">
+    <template>
+      <at-form-checkbox-list hide-label=""></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideLabelIsLorem_ipsum">
+    <template>
+      <at-form-checkbox-list hide-label="lorem ipsum"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideLabelIs{}">
+    <template>
+      <at-form-checkbox-list hide-label="{}"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideLabelIs[]">
+    <template>
+      <at-form-checkbox-list hide-label="[]"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideLabelIsFunction">
+    <template>
+      <at-form-checkbox-list hide-label="function f() { return undefined; }"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+
+  <!-- 
+    disabled fixtures 
+  -->
+  <test-fixture id="disabledIsUndefined">
+    <template>
+      <at-form-checkbox-list disabled="undefined"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="disabledIsNull">
+    <template>
+      <at-form-checkbox-list disabled="null"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="disabledIsTrue">
+    <template>
+      <at-form-checkbox-list disabled="true"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="disabledIsFalse">
+    <template>
+      <at-form-checkbox-list disabled="false"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="disabledIs-42">
+    <template>
+      <at-form-checkbox-list disabled="-42"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="disabledIs0">
+    <template>
+      <at-form-checkbox-list disabled="0"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="disabledIs42">
+    <template>
+      <at-form-checkbox-list disabled="42"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="disabledIsEmpty">
+    <template>
+      <at-form-checkbox-list disabled=""></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="disabledIsLorem_ipsum">
+    <template>
+      <at-form-checkbox-list disabled="lorem ipsum"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="disabledIs{}">
+    <template>
+      <at-form-checkbox-list disabled="{}"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="disabledIs[]">
+    <template>
+      <at-form-checkbox-list disabled="[]"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="disabledIsFunction">
+    <template>
+      <at-form-checkbox-list disabled="function f() { return undefined; }"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+
+  <!-- 
+    hide fixtures 
+  -->
+  <test-fixture id="hideIsUndefined">
+    <template>
+      <at-form-checkbox-list hide="undefined"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideIsNull">
+    <template>
+      <at-form-checkbox-list hide="null"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideIsTrue">
+    <template>
+      <at-form-checkbox-list hide="true"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideIsFalse">
+    <template>
+      <at-form-checkbox-list hide="false"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideIs-42">
+    <template>
+      <at-form-checkbox-list hide="-42"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideIs0">
+    <template>
+      <at-form-checkbox-list hide="0"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideIs42">
+    <template>
+      <at-form-checkbox-list hide="42"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideIsEmpty">
+    <template>
+      <at-form-checkbox-list hide=""></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideIsLorem_ipsum">
+    <template>
+      <at-form-checkbox-list hide="lorem ipsum"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideIs{}">
+    <template>
+      <at-form-checkbox-list hide="{}"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideIs[]">
+    <template>
+      <at-form-checkbox-list hide="[]"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="hideIsFunction">
+    <template>
+      <at-form-checkbox-list hide="function f() { return undefined; }"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+
+  <!-- 
+    required fixtures 
+  -->
+  <test-fixture id="requiredIsUndefined">
+    <template>
+      <at-form-checkbox-list required="undefined"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="requiredIsNull">
+    <template>
+      <at-form-checkbox-list required="null"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="requiredIsTrue">
+    <template>
+      <at-form-checkbox-list required="true"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="requiredIsFalse">
+    <template>
+      <at-form-checkbox-list required="false"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="requiredIs-42">
+    <template>
+      <at-form-checkbox-list required="-42"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="requiredIs0">
+    <template>
+      <at-form-checkbox-list required="0"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="requiredIs42">
+    <template>
+      <at-form-checkbox-list required="42"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="requiredIsEmpty">
+    <template>
+      <at-form-checkbox-list required=""></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="requiredIsLorem_ipsum">
+    <template>
+      <at-form-checkbox-list required="lorem ipsum"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="requiredIs{}">
+    <template>
+      <at-form-checkbox-list required="{}"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="requiredIs[]">
+    <template>
+      <at-form-checkbox-list required="[]"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="requiredIsFunction">
+    <template>
+      <at-form-checkbox-list required="function f() { return undefined; }"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+
+  <!-- 
+    value fixtures 
+  -->
+  <test-fixture id="valueIsUndefined">
+    <template>
+      <at-form-checkbox-list value="undefined"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="valueIsNull">
+    <template>
+      <at-form-checkbox-list value="null"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="valueIsTrue">
+    <template>
+      <at-form-checkbox-list value="true"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="valueIsFalse">
+    <template>
+      <at-form-checkbox-list value="false"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="valueIs-42">
+    <template>
+      <at-form-checkbox-list value="-42"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="valueIs0">
+    <template>
+      <at-form-checkbox-list value="0"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="valueIs42">
+    <template>
+      <at-form-checkbox-list value="42"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="valueIsEmpty">
+    <template>
+      <at-form-checkbox-list value=""></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="valueIsLorem_ipsum">
+    <template>
+      <at-form-checkbox-list value="lorem ipsum"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="valueIs{}">
+    <template>
+      <at-form-checkbox-list value="{}"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="valueIs[]">
+    <template>
+      <at-form-checkbox-list value="[]"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="valueIsFunction">
+    <template>
+      <at-form-checkbox-list value="function f() { return undefined; }"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+
+  <!-- 
+    xvaluelist fixtures 
+  -->
+  <test-fixture id="xvaluelistIsUndefined">
+    <template>
+      <at-form-checkbox-list xvaluelist="undefined"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="xvaluelistIsNull">
+    <template>
+      <at-form-checkbox-list xvaluelist="null"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="xvaluelistIsTrue">
+    <template>
+      <at-form-checkbox-list xvaluelist="true"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="xvaluelistIsFalse">
+    <template>
+      <at-form-checkbox-list xvaluelist="false"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="xvaluelistIs-42">
+    <template>
+      <at-form-checkbox-list xvaluelist="-42"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="xvaluelistIs0">
+    <template>
+      <at-form-checkbox-list xvaluelist="0"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="xvaluelistIs42">
+    <template>
+      <at-form-checkbox-list xvaluelist="42"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="xvaluelistIsEmpty">
+    <template>
+      <at-form-checkbox-list xvaluelist=""></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="xvaluelistIsLorem_ipsum">
+    <template>
+      <at-form-checkbox-list xvaluelist="lorem ipsum"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="xvaluelistIs{}">
+    <template>
+      <at-form-checkbox-list xvaluelist="{}"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="xvaluelistIs[]">
+    <template>
+      <at-form-checkbox-list xvaluelist="[]"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  <test-fixture id="xvaluelistIsFunction">
+    <template>
+      <at-form-checkbox-list xvaluelist="function f() { return undefined; }"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+
+  <!-- property tests -->
+  <test-fixture id="propertyTests">
+    <template>
+      <at-form-checkbox-list></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('initial value tests', function() {
+      test('initial value', function() {
+        var elt = fixture('initial');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+    });
+
+    // 
+    // label attribute tests
+    // 
+    suite("label attribute tests", function() {
+      test('label is undefined', function() {
+        var elt = fixture('labelIsUndefined');
+
+        assert.equal(elt.label, "undefined");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('label is null', function() {
+        var elt = fixture('labelIsNull');
+
+        assert.equal(elt.label, "null");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('label is true', function() {
+        var elt = fixture('labelIsTrue');
+
+        assert.equal(elt.label, "true");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('label is false', function() {
+        var elt = fixture('labelIsFalse');
+
+        assert.equal(elt.label, "false");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('label is -42', function() {
+        var elt = fixture('labelIs-42');
+
+        assert.equal(elt.label, "-42");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('label is 0', function() {
+        var elt = fixture('labelIs0');
+
+        assert.equal(elt.label, "0");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('label is 42', function() {
+        var elt = fixture('labelIs42');
+
+        assert.equal(elt.label, "42");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('label is empty', function() {
+        var elt = fixture('labelIsEmpty');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('label is lorem ipsum', function() {
+        var elt = fixture('labelIsLorem_ipsum');
+
+        assert.equal(elt.label, "lorem ipsum");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('label is {}', function() {
+        var elt = fixture('labelIs{}');
+
+        assert.equal(elt.label, "{}");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('label is []', function() {
+        var elt = fixture('labelIs[]');
+
+        assert.equal(elt.label, "[]");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('label is function', function() {
+        var elt = fixture('labelIsFunction');
+
+        assert.equal(elt.label, "function f() { return undefined; }");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+    });
+
+    // 
+    // hideLabel attribute tests
+    // 
+    suite("hideLabel attribute tests", function() {
+      test('hideLabel is undefined', function() {
+        var elt = fixture('hideLabelIsUndefined');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, true);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hideLabel is null', function() {
+        var elt = fixture('hideLabelIsNull');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, true);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hideLabel is true', function() {
+        var elt = fixture('hideLabelIsTrue');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, true);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hideLabel is false', function() {
+        var elt = fixture('hideLabelIsFalse');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, true);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hideLabel is -42', function() {
+        var elt = fixture('hideLabelIs-42');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, true);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hideLabel is 0', function() {
+        var elt = fixture('hideLabelIs0');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, true);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hideLabel is 42', function() {
+        var elt = fixture('hideLabelIs42');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, true);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hideLabel is empty', function() {
+        var elt = fixture('hideLabelIsEmpty');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, true);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hideLabel is lorem ipsum', function() {
+        var elt = fixture('hideLabelIsLorem_ipsum');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, true);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hideLabel is {}', function() {
+        var elt = fixture('hideLabelIs{}');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, true);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hideLabel is []', function() {
+        var elt = fixture('hideLabelIs[]');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, true);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hideLabel is function', function() {
+        var elt = fixture('hideLabelIsFunction');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, true);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+    });
+
+    // 
+    // disabled attribute tests
+    // 
+    suite("disabled attribute tests", function() {
+      test('disabled is undefined', function() {
+        var elt = fixture('disabledIsUndefined');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, true);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('disabled is null', function() {
+        var elt = fixture('disabledIsNull');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, true);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('disabled is true', function() {
+        var elt = fixture('disabledIsTrue');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, true);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('disabled is false', function() {
+        var elt = fixture('disabledIsFalse');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, true);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('disabled is -42', function() {
+        var elt = fixture('disabledIs-42');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, true);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('disabled is 0', function() {
+        var elt = fixture('disabledIs0');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, true);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('disabled is 42', function() {
+        var elt = fixture('disabledIs42');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, true);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('disabled is empty', function() {
+        var elt = fixture('disabledIsEmpty');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, true);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('disabled is lorem ipsum', function() {
+        var elt = fixture('disabledIsLorem_ipsum');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, true);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('disabled is {}', function() {
+        var elt = fixture('disabledIs{}');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, true);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('disabled is []', function() {
+        var elt = fixture('disabledIs[]');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, true);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('disabled is function', function() {
+        var elt = fixture('disabledIsFunction');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, true);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+    });
+
+    // 
+    // hide attribute tests
+    // 
+    suite("hide attribute tests", function() {
+      test('hide is undefined', function() {
+        var elt = fixture('hideIsUndefined');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, true);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hide is null', function() {
+        var elt = fixture('hideIsNull');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, true);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hide is true', function() {
+        var elt = fixture('hideIsTrue');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, true);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hide is false', function() {
+        var elt = fixture('hideIsFalse');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, true);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hide is -42', function() {
+        var elt = fixture('hideIs-42');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, true);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hide is 0', function() {
+        var elt = fixture('hideIs0');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, true);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hide is 42', function() {
+        var elt = fixture('hideIs42');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, true);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hide is empty', function() {
+        var elt = fixture('hideIsEmpty');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, true);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hide is lorem ipsum', function() {
+        var elt = fixture('hideIsLorem_ipsum');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, true);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hide is {}', function() {
+        var elt = fixture('hideIs{}');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, true);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hide is []', function() {
+        var elt = fixture('hideIs[]');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, true);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('hide is function', function() {
+        var elt = fixture('hideIsFunction');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, true);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+    });
+
+    // 
+    // required attribute tests
+    // 
+    suite("required attribute tests", function() {
+      test('required is undefined', function() {
+        var elt = fixture('requiredIsUndefined');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, true);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('required is null', function() {
+        var elt = fixture('requiredIsNull');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, true);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('required is true', function() {
+        var elt = fixture('requiredIsTrue');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, true);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('required is false', function() {
+        var elt = fixture('requiredIsFalse');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, true);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('required is -42', function() {
+        var elt = fixture('requiredIs-42');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, true);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('required is 0', function() {
+        var elt = fixture('requiredIs0');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, true);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('required is 42', function() {
+        var elt = fixture('requiredIs42');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, true);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('required is empty', function() {
+        var elt = fixture('requiredIsEmpty');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, true);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('required is lorem ipsum', function() {
+        var elt = fixture('requiredIsLorem_ipsum');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, true);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('required is {}', function() {
+        var elt = fixture('requiredIs{}');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, true);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('required is []', function() {
+        var elt = fixture('requiredIs[]');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, true);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('required is function', function() {
+        var elt = fixture('requiredIsFunction');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, true);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+    });
+
+    // 
+    // value attribute tests
+    // 
+    suite("value attribute tests", function() {
+      test('value is undefined', function() {
+        var elt = fixture('valueIsUndefined');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, 'undefined');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('value is null', function() {
+        var elt = fixture('valueIsNull');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, 'null');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('value is true', function() {
+        var elt = fixture('valueIsTrue');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, 'true');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('value is false', function() {
+        var elt = fixture('valueIsFalse');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, 'false');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('value is -42', function() {
+        var elt = fixture('valueIs-42');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '-42');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('value is 0', function() {
+        var elt = fixture('valueIs0');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '0');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('value is 42', function() {
+        var elt = fixture('valueIs42');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '42');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('value is empty', function() {
+        var elt = fixture('valueIsEmpty');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('value is lorem ipsum', function() {
+        var elt = fixture('valueIsLorem_ipsum');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, 'lorem ipsum');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('value is {}', function() {
+        var elt = fixture('valueIs{}');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '{}');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('value is []', function() {
+        var elt = fixture('valueIs[]');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '[]');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('value is function', function() {
+        var elt = fixture('valueIsFunction');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, 'function f() { return undefined; }');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+    });
+
+    // 
+    // xvaluelist attribute tests
+    // 
+    suite("xvaluelist attribute tests", function() {
+      test('xvaluelist is undefined', function() {
+        var elt = fixture('xvaluelistIsUndefined');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.isNull(elt.xvaluelist);
+      });
+
+      test('xvaluelist is null', function() {
+        var elt = fixture('xvaluelistIsNull');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.isNull(elt.xvaluelist);
+      });
+
+      test('xvaluelist is true', function() {
+        var elt = fixture('xvaluelistIsTrue');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, true);
+      });
+
+      test('xvaluelist is false', function() {
+        var elt = fixture('xvaluelistIsFalse');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, false);
+      });
+
+      test('xvaluelist is -42', function() {
+        var elt = fixture('xvaluelistIs-42');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, -42);
+      });
+
+      test('xvaluelist is 0', function() {
+        var elt = fixture('xvaluelistIs0');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, 0);
+      });
+
+      test('xvaluelist is 42', function() {
+        var elt = fixture('xvaluelistIs42');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, 42);
+      });
+
+      test('xvaluelist is empty', function() {
+        var elt = fixture('xvaluelistIsEmpty');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.isNull(elt.xvaluelist);
+      });
+
+      test('xvaluelist is lorem ipsum', function() {
+        var elt = fixture('xvaluelistIsLorem_ipsum');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.isNull(elt.xvaluelist);
+      });
+
+      test('xvaluelist is {}', function() {
+        var elt = fixture('xvaluelistIs{}');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, {});
+      });
+
+      test('xvaluelist is []', function() {
+        var elt = fixture('xvaluelistIs[]');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.deepEqual(elt.xvaluelist, []);
+      });
+
+      test('xvaluelist is function', function() {
+        var elt = fixture('xvaluelistIsFunction');
+
+        assert.equal(elt.hideLabel, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.disabled, false);
+        assert.equal(elt.hide, false);
+        assert.equal(elt.required, false);
+        assert.equal(elt.value, '');
+        assert.isNull(elt.xvaluelist);
+      });
+    });
+
+    suite("tests where properties are set as in code", function() { 
+      test('label values', function() {
+        var elt = fixture('propertyTests');
+
+        var actValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }", 
+          undefined, null, true, false, -42, 0, 42, {}, []
+          ];
+
+        var expValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }",
+          undefined, null, true, false, -42, 0, 42, {}, []
+         ];
+
+        for (var i=0; i < actValues.length; i++) { 
+          var actValue = actValues[i];
+          var expValue = expValues[i];
+
+          elt.label = actValue;
+          
+          assert.deepEqual(elt.label, expValue);
+          assert.equal(elt.hideLabel, false);
+          assert.equal(elt.disabled, false);
+          assert.equal(elt.hide, false);
+          assert.equal(elt.required, false);
+          assert.equal(elt.value, '');
+          assert.deepEqual(elt.xvaluelist, []);
+        }
+      });
+
+      test('hideLabel values', function() {
+        var elt = fixture('propertyTests');
+
+        var actValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }", 
+          undefined, null, true, false, -42, 0, 42, {}, []
+          ];
+
+        var expValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }",
+          undefined, null, true, false, -42, 0, 42, {}, []
+         ];
+
+        for (var i=0; i < actValues.length; i++) { 
+          var actValue = actValues[i];
+          var expValue = expValues[i];
+
+          elt.hideLabel = actValue;
+          
+          assert.equal(elt.label, "");
+          assert.deepEqual(elt.hideLabel, expValue);
+          assert.equal(elt.disabled, false);
+          assert.equal(elt.hide, false);
+          assert.equal(elt.required, false);
+          assert.equal(elt.value, '');
+          assert.deepEqual(elt.xvaluelist, []);
+        }
+      });
+
+      test('disabled values', function() {
+        var elt = fixture('propertyTests');
+
+        var actValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }", 
+          undefined, null, true, false, -42, 0, 42, {}, []
+          ];
+
+        var expValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }",
+          undefined, null, true, false, -42, 0, 42, {}, []
+         ];
+
+        for (var i=0; i < actValues.length; i++) { 
+          var actValue = actValues[i];
+          var expValue = expValues[i];
+
+          elt.disabled = actValue;
+          
+          assert.equal(elt.label, "");
+          assert.equal(elt.hideLabel, false);
+          assert.deepEqual(elt.disabled, expValue);
+          assert.equal(elt.hide, false);
+          assert.equal(elt.required, false);
+          assert.equal(elt.value, '');
+          assert.deepEqual(elt.xvaluelist, []);
+        }
+      });
+
+      test('hide values', function() {
+        var elt = fixture('propertyTests');
+
+        var actValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }", 
+          undefined, null, true, false, -42, 0, 42, {}, []
+          ];
+
+        var expValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }",
+          undefined, null, true, false, -42, 0, 42, {}, []
+         ];
+
+        for (var i=0; i < actValues.length; i++) { 
+          var actValue = actValues[i];
+          var expValue = expValues[i];
+
+          elt.hide = actValue;
+          
+          assert.equal(elt.label, "");
+          assert.equal(elt.hideLabel, false);
+          assert.equal(elt.disabled, false);
+          assert.deepEqual(elt.hide, expValue);
+          assert.equal(elt.required, false);
+          assert.equal(elt.value, '');
+          assert.deepEqual(elt.xvaluelist, []);
+        }
+      });
+
+      test('required values', function() {
+        var elt = fixture('propertyTests');
+
+        var actValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }", 
+          undefined, null, true, false, -42, 0, 42, {}, []
+          ];
+
+        var expValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }",
+          undefined, null, true, false, -42, 0, 42, {}, []
+         ];
+
+        for (var i=0; i < actValues.length; i++) { 
+          var actValue = actValues[i];
+          var expValue = expValues[i];
+
+          elt.required = actValue;
+          
+          assert.equal(elt.label, "");
+          assert.equal(elt.hideLabel, false);
+          assert.equal(elt.disabled, false);
+          assert.equal(elt.hide, false);
+          assert.deepEqual(elt.required, expValue);
+          assert.equal(elt.value, '');
+          assert.deepEqual(elt.xvaluelist, []);
+        }
+      });
+
+      test('value values', function() {
+        var elt = fixture('propertyTests');
+
+        var actValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }", 
+          undefined, null, true, false, -42, 0, 42, {}, []
+          ];
+
+        var expValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }",
+          undefined, null, true, false, -42, 0, 42, {}, []
+         ];
+
+        for (var i=0; i < actValues.length; i++) { 
+          var actValue = actValues[i];
+          var expValue = expValues[i];
+
+          elt.value = actValue;
+          
+          assert.equal(elt.label, "");
+          assert.equal(elt.hideLabel, false);
+          assert.equal(elt.disabled, false);
+          assert.equal(elt.hide, false);
+          assert.equal(elt.required, false);
+          assert.deepEqual(elt.value, expValue);
+          assert.deepEqual(elt.xvaluelist, []);
+        }
+      });
+
+      test('xvaluelist values', function() {
+        var elt = fixture('propertyTests');
+
+        // following do not work because they contain characters invalid in css selectors
+        // -42 because string starts with hyphen (-)
+        // 0, 42 because strings start with numbers
+        // lorem ipsum because string contains empty space " "
+        // {} because string contains open brace/close brace characters
+        // [] because string contains bracket characters
+        // function f() { return undefined; } because it contains multiple invalid characters
+        var actValues = [
+          "undefined", "null", "true", "false", "", "lorem_ipsum", "",
+          undefined, null, true, false, -42, 0, 42, {}, []
+          ];
+
+        var expValues = [
+          "undefined", "null", "true", "false", "", "lorem_ipsum", "",
+          undefined, null, true, false, -42, 0, 42, {}, []
+         ];
+
+        for (var i=0; i < actValues.length; i++) { 
+          var actValue = actValues[i];
+          var expValue = expValues[i];
+          
+          elt.xvaluelist = actValue;
+          
+          assert.equal(elt.label, "");
+          assert.equal(elt.hideLabel, false);
+          assert.equal(elt.disabled, false);
+          assert.equal(elt.hide, false);
+          assert.equal(elt.required, false);
+          assert.equal(elt.value, '');
+          assert.deepEqual(elt.xvaluelist, expValue);
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>
