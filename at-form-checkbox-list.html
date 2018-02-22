@@ -1,25 +1,336 @@
 <link rel="import" href="../tangere/tangere.html" />
+<link rel="import" href="../at-theme/at-theme.html">
+<link rel="import" href="../at-i18n/at-i18n-behavior.html">
+<link rel="import" href="../at-form-behaviors/at-form-behaviors.html">
+<link rel="import" href="at-form-checkbox-list-input-validation.html">
+<link rel="import" href="../iron-label/iron-label.html">
+<link rel="import" href="../paper-checkbox/paper-checkbox.html" />
 
 <dom-module id="at-form-checkbox-list">
   <template>
-    <style>
+    <style include="at-form-common">
       :host {
         display: block;
         box-sizing: border-box;
       }
+
+      paper-checkbox.error {
+        --paper-checkbox-checked-color: var(--at-error-color);
+        --paper-checkbox-checked-ink-color: var(--at-error-color);
+        --paper-checkbox-unchecked-color: var(--at-error-color);
+        --paper-checkbox-unchecked-ink-color: var(--at-error-color);
+        --paper-checkbox-label-color: var(--at-error-color);
+      }
+
+      .at-content-container {
+        @apply(--layout-vertical);
+      }
     </style>
-    
-    <content></content>
+    <div id="atContainer" class="at-container">
+      <iron-label id="label">{{label}}</iron-label>
+      <div id="contentContainer" class="at-content-container" on-change="_handleCheckChangedEvent"></div>
+      <div id="hint"></div>
+    </div>
   </template>
 </dom-module>
 <script>
   Polymer({
     is: "at-form-checkbox-list",
+    behaviors: [ Tangere.behaviors.i18n, Tangere.behaviors.formUIGeneric, Tangere.behaviors.AtFormCheckboxListInputValidation ],
+    
     properties: {
-      
-    },
-    ready: function () {
+      /**
+       * Element's label for element display purposes
+       * @property label
+       * @type String
+       * @default ""
+       */
+      label: {
+        type: String,
+        value: '',
+        title: 'Label'
+      },
 
+      /**
+       * When true label is hidden
+       * @property hideLabel
+       * @type Boolean
+       * @default false
+       */
+      hideLabel: {
+        type: Boolean,
+        value: false,
+        observer: '_hideLabelChanged',
+        title: 'Do not show the label'
+      },
+
+      /**
+       * Element's disabled state
+       * @property disabled
+       * @type Boolean
+       * @default false
+       */
+      disabled: {
+        type: Boolean,
+        value: false,
+        observer: '_disabledChanged',
+        title: 'Field value can not be changed'
+      },
+
+      /**
+       * Hides the element. When hidden nothing is displayed for the element
+       * @property hide
+       * @type Boolean
+       * @default false
+       */
+      hide: {
+        type: Boolean,
+        value: false,
+        observer: '_hideChanged',
+        title: 'Field is invisible'
+      },
+
+      /**
+       * Element's required state for element validation purposes
+       * @property required
+       * @type Boolean
+       * @default false
+       */
+      required: {
+        type: Boolean,
+        value: false,
+        title: 'Input required'
+      },
+
+      /**
+       * Element's value
+       * @property value
+       * @type String
+       * @default ""
+       */
+      value: {
+        type: String,
+        value: '',
+        observer: '_valueChanged',
+        title: 'Value'
+      },
+
+      /**
+       * List of availble options provided as array of { title, value } pairs
+       * @property xvaluelist
+       * @type Array
+       * @default []
+       */
+      xvaluelist: {
+        type: Array,
+        value: function() {
+          return [];
+        },
+        observer: '_xvaluelistChanged',
+        schema: {
+          items: {
+            type: "object",
+            properties: {
+              title: {
+                type: "string",
+                title: "Title"
+              },
+              value: {
+                type: "string",
+                title: "Value"
+              }
+            }
+          }
+        },
+        layout: 'horizontal',
+        title: 'Value List',
+        xgridcols: '12'
+      }
+    },
+
+    observers: [
+      '_internalValidStateUpdate(required)'
+    ],
+
+    $meta: [{
+      title: "Checkbox list",
+      type: "string",
+      xtype: "checkboxlist"
+    }],
+
+    _internalValue: [],
+    _internalValueList: [],
+
+    _hideLabelChanged: function(newValue, oldValue) {
+      this.toggleAttribute("hidden", newValue, this.$.label);
+    },
+    
+    ready: function () {
+      this._isReady = true;
+      this._internalValidStateUpdate(this.required);
+    },
+
+    _disabledChanged: function(newValue, oldValue) {
+      var atContainer = this.$.atContainer;
+      this.toggleClass('disabled', newValue, atContainer);
+
+      var checkboxes = Polymer.dom(this.$.contentContainer).querySelectorAll('paper-checkbox');
+      Array.prototype.forEach.call(checkboxes, function(checkbox) {
+        this.toggleAttribute('disabled', newValue, item);
+      }, this);
+    },
+
+    _hideChanged: function(newValue, oldValue) {
+      this.toggleClass('hidden', newValue, this.$.atContainer);
+    },
+
+    _internalValidStateUpdate: function(required) {
+      if (!this._isReady) return;
+      this.validate();
+    },
+
+    validate: function (showError) {
+      if (showError === undefined) { showError = this.autoValidate; }
+
+      var validationResult = this._validateBaseData();
+      this._handleValidationResult(validationResult);
+      if (!validationResult.isValid) {
+        return validationResult.isValid;
+      }
+
+      validationResult = this._validateData(this, this.value, this.T.bind(this));
+      if(showError) this._handleValidationResult(validationResult);
+
+      return validationResult.isValid;
+    },
+
+    _updateUIValidState: function(isValid) {
+      this.toggleClass('error', !isValid, this.$.label);
+
+      var checkboxes = Polymer.dom(this.$.contentContainer).querySelectorAll('paper-checkbox');
+      Array.prototype.forEach.call(checkboxes, function(checkbox, index) {
+        this.toggleClass('error', !isValid, checkbox);
+      }, this);
+    },
+
+    _handleCheckChangedEvent: function(event) {
+      var id = event.target.getAttribute('name');
+      var checked = event.target.getAttribute('checked') !== null;
+
+      if (checked) {
+        // add id to value
+        this._internalValue.push(id);
+      
+      } else {
+        // remove id from value
+        var indexOfId = this._internalValue.indexOf(id);
+        this._internalValue.splice(indexOfId, 1);
+      }
+
+      this._internalValueUpdate = true;
+      this.value = this._internalValue.join(',');
+      this._internalValueUpdate = false;
+      this.fire('value-changed', { value: this.value }, { bubbles: false });
+    },
+
+    _valueChanged: function(newValue, oldValue) {
+      if (this._internalValueUpdate) return;
+      this._internalValue = this._isString(newValue) && newValue.length ? newValue.split(',') : [];
+      this._internalValue.forEach(function(item, index) {
+        this._internalValue[index] = item.trim();
+      }, this);
+      this._refreshCheckedElements();
+      if (this.autoValidate) { this.validate(true); }
+    },
+
+    _xvaluelistChanged: function(newValue, oldValue) {
+      // clear previous html
+      Polymer.dom(this.$.contentContainer).innerHTML = '';
+
+      // newValue can be CSV or array; detection needed and normalization to array
+      this._internalValueList = this._convertToArray(newValue);
+      
+      this._internalValueList.forEach(function(item) {
+        var fieldHtml = document.createElement('paper-checkbox');
+        Polymer.dom(fieldHtml).innerHTML = item.title;
+        Polymer.dom(fieldHtml).setAttribute('name', item.value);
+        this.toggleAttribute('disabled', this.disabled, fieldHtml);
+
+        Polymer.dom(this.$.contentContainer).appendChild(fieldHtml);
+      }, this);
+
+      this._refreshCheckedElements();
+    },
+
+    _refreshCheckedElements: function() {
+      this._internalValueList.forEach(function(item) {
+        if (!item.value.length) return;
+        var isChecked = this._existsInArray(this._internalValue, item.value);
+        var selector = 'paper-checkbox[name='+ item.value + ']';
+        var cb = Polymer.dom(this.$.contentContainer).querySelector(selector);
+        this.toggleAttribute('checked', isChecked, cb);
+      }, this);
+    },
+
+    _existsInArray: function(array, id) {
+      var found = false;
+      for (var i = 0; i < array.length && !found; i++) {
+        found = array[i] === id;
+      }
+      return found;
+    },
+
+    focus: function() {
+      this.$.contentContainer.focus();
+    },
+
+    // this function is part of the hint/validation API
+    // hint should be displayed when element gains focus
+    // behavior can not know when element gained focus
+    // but if gived focusable element it can attach to its focus event
+    // it should return focusable element if available or null if focusable element doesn't exist
+    _getFocusableElement: function() {
+      return this.$.contentContainer;
+    },
+
+    _convertToArray: function(object) {
+      var result = [];
+
+      if (this._isArray(object)) {
+        // object is already array; return
+        return object;
+      }
+
+      if (this._isString(object) && object.indexOf(',') !== -1) {
+        // object is CSV string; split, convert and return
+        var
+          splitItems = object.split(','),
+          len = splitItems.length,
+          i, item;
+        for (var i = 0; i < len; i++) {
+          item = splitItems[i];
+          item = item.trim();
+          result.push({
+            value: item,
+            title: item
+          });
+        }
+
+      } else if (this._isString(object)) {
+        result.push({
+          value: object,
+          title: object
+        });
+      }
+
+      return result;
+    },
+    _isArray: function(object) {
+      return Object.prototype.toString.call(object) === '[object Array]';
+    },
+    _isString: function(object) {
+      return Object.prototype.toString.call(object) === '[object String]';
     }
+
   });
 </script>
