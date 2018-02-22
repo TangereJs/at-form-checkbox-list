@@ -171,12 +171,11 @@
     },
 
     _disabledChanged: function(newValue, oldValue) {
-      var atContainer = this.$.atContainer;
-      this.toggleClass('disabled', newValue, atContainer);
+      this.toggleClass('disabled', newValue, this.$.label);
 
       var checkboxes = Polymer.dom(this.$.contentContainer).querySelectorAll('paper-checkbox');
       Array.prototype.forEach.call(checkboxes, function(checkbox) {
-        this.toggleAttribute('disabled', newValue, item);
+        this.toggleAttribute('disabled', newValue, checkbox);
       }, this);
     },
 
