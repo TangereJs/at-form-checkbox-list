@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+
+  <title>at-form-checkbox-list tests</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../iron-test-helpers/test-helpers.js"></script>
+  <script src="../../iron-test-helpers/mock-interactions.js"></script>
+
+  <link rel="import" href="../at-form-checkbox-list.html">
+
+</head>
+<body>
+
+  <test-fixture id="valueChanged">
+    <template>
+      <at-form-checkbox-list xvaluelist='[{"title":"T1","value":"v1"},{"title":"T2","value":"v2"},{"title":"T3","value":"v3"}]'></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+  
+  <script>
+    suite('events tests', function() {
+
+      test('setting .value does not trigger value-changed event', function() {
+        var elt = fixture('valueChanged');
+        assert.equal(elt.value, '');
+
+        var eventCount = 0;
+        var expValue = '';
+        elt.addEventListener('value-changed', function(event) {
+          assert.equal(event.detail.value, expValue);
+          assert.equal(elt.value, expValue);
+          eventCount += 1;
+        });
+
+        expValue = "v1";
+        elt.value = "v1";
+        assert.equal(eventCount, 0);
+
+        expValue = "v2";
+        elt.value = "v2";
+        assert.equal(eventCount, 0);
+
+        expValue = "v1,v3";
+        elt.value = "v1,v3";
+        assert.equal(eventCount, 0);
+      });
+
+      test('setting value attribute does not trigger value-changed event', function() {
+        var elt = fixture('valueChanged');
+        assert.equal(elt.value, '');
+
+        var eventCount = 0;
+        var expValue = '';
+        elt.addEventListener('value-changed', function(event) {
+          assert.equal(event.detail.value, expValue);
+          assert.equal(elt.value, expValue);
+          eventCount += 1;
+        });
+
+        expValue = "v1";
+        Polymer.dom(elt).setAttribute('value', "v1");
+        assert.equal(eventCount, 0);
+
+        expValue = "v2";
+        Polymer.dom(elt).setAttribute('value', "v2");
+        assert.equal(eventCount, 0);
+
+        expValue = "v1,v3";
+        Polymer.dom(elt).setAttribute('value', "v1,v3");
+        assert.equal(eventCount, 0);
+      });
+
+      function getCheckbox(elt, id) {
+        var selector = 'paper-checkbox[name='+id+']';
+        var cb = Polymer.dom(elt.$.contentContainer).querySelector(selector);
+        return cb;
+      }
+
+      test('tapping chekcbox triggers value-changed event', function() {
+        var elt = fixture('valueChanged');
+        assert.equal(elt.value, '');
+
+        var eventCount = 0;
+        var expValue = '';
+
+        elt.addEventListener('value-changed', function(event) {
+          assert.equal(event.detail.value, expValue);
+          assert.equal(elt.value, expValue);
+          eventCount += 1;
+        });
+
+        expValue = "v1";
+        var cb = getCheckbox(elt, 'v1');
+        assert.isNotNull(cb);
+        MockInteractions.tap(cb);
+        assert.equal(eventCount, 1);
+
+        expValue = "v1,v2";
+        var cb = getCheckbox(elt, 'v2');
+        assert.isNotNull(cb);
+        MockInteractions.tap(cb);
+        assert.equal(eventCount, 2);
+
+        expValue = "v2";
+        var cb = getCheckbox(elt, 'v1');
+        assert.isNotNull(cb);
+        MockInteractions.tap(cb);
+        assert.equal(eventCount, 3);
+
+      });
+
+    });
+  </script>
+
+</body>
+</html>

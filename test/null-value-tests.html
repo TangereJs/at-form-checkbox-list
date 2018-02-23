@@ -1,0 +1,130 @@
+7<!doctype html>
+<html>
+
+<head>
+
+  <title>at-form-checkbox-list tests</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../iron-test-helpers/test-helpers.js"></script>
+  <script src="../../iron-test-helpers/mock-interactions.js"></script>
+
+  <link rel="import" href="../at-form-checkbox-list.html">
+
+</head>
+
+<body>
+
+  <test-fixture id="attrNullValue">
+    <template>
+      <at-form-checkbox-list xvaluelist='[{"title":"T1","value":"v1"},{"title":"T2","value":"v2"},{"title":"T3","value":"v3"}]' value=null></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="attrNullStringValue">
+    <template>
+      <at-form-checkbox-list xvaluelist='[{"title":"T1","value":"v1"},{"title":"T2","value":"v2"},{"title":"T3","value":"v3"}]' value="null"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="attrNullValueAndRequired">
+    <template>
+      <at-form-checkbox-list xvaluelist='[{"title":"T1","value":"v1"},{"title":"T2","value":"v2"},{"title":"T3","value":"v3"}]' required value=null></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="attrNullStringValueAndRequired">
+    <template>
+      <at-form-checkbox-list xvaluelist='[{"title":"T1","value":"v1"},{"title":"T2","value":"v2"},{"title":"T3","value":"v3"}]' required value="null"></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="propertyTest">
+    <template>
+      <at-form-checkbox-list></at-form-checkbox-list>
+    </template>
+  </test-fixture>  
+
+  <script>
+    suite('null value tests', function() {
+      test('attribute value set to null', function() {
+        var elt = fixture('attrNullValue');
+        assert.equal(elt.value, 'null');
+        assert.equal(elt.valid, true);
+      });
+
+      test('attribute value set to "null"', function() {
+        var elt = fixture('attrNullStringValue');
+        assert.equal(elt.value, 'null');
+        assert.equal(elt.valid, true);
+      });
+
+      test('required and attribute value set to null', function () {
+        var elt = fixture('attrNullValueAndRequired');
+        assert.equal(elt.required, true);
+        assert.equal(elt.value, 'null');
+        assert.equal(elt.valid, true);
+      });
+
+      test('required and attribute value set to "null"', function () {
+        var elt = fixture('attrNullValueAndRequired');
+        assert.equal(elt.required, true);
+        assert.equal(elt.value, 'null');
+        assert.equal(elt.valid, true);
+      });
+    });
+
+    suite('null value tests props', function() {
+      var xvalueliststr ='[{"title":"T1","value":"v1"},{"title":"T2","value":"v2"},{"title":"T3","value":"v3"}]';
+      var xvaluelist = JSON.parse(xvalueliststr);
+
+      test('property value set to null', function() {
+        var elt = fixture('propertyTest');
+        elt.xvaluelist = xvaluelist;
+        elt.value = null;
+
+        assert.equal(elt.value, null);
+        assert.equal(elt.valid, true);
+      });
+
+      test('property value set to "null"', function() {
+        var elt = fixture('propertyTest');
+        elt.xvaluelist = xvaluelist;
+        elt.value = "null";
+
+        assert.equal(elt.value, "null");
+        assert.equal(elt.valid, true);
+      });
+
+      test('required and property value set to null', function () {
+        var elt = fixture('propertyTest');
+        elt.required = true;
+        elt.value = null;
+
+        assert.equal(elt.required, true);
+        assert.equal(elt.value, null);
+        assert.equal(elt.valid, false);
+      });
+
+      test('required and property value set to "null"', function () {
+        var elt = fixture('propertyTest');
+        elt.required = true;
+        elt.value = "null";
+
+        assert.equal(elt.required, true);
+        assert.equal(elt.value, "null");
+        assert.equal(elt.valid, true);
+      });
+
+    });
+  </script>
+
+</body>
+
+</html>

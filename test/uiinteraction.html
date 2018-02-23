@@ -47,6 +47,24 @@
     </template>
   </test-fixture>
 
+  <test-fixture id="hidden">
+    <template>
+      <at-form-checkbox-list hide></at-form-checkbox-list>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="required">
+    <template>
+      <at-form-checkbox-list  xvaluelist='[{"title":"T1","value":"v1"},{"title":"T2","value":"v2"},{"title":"T3","value":"v3"}]' required></at-form-checkbox-list>
+    </template>
+  </test-fixture>  
+
+  <test-fixture id="setValue">
+    <template>
+      <at-form-checkbox-list  xvaluelist='[{"title":"T1","value":"v1"},{"title":"T2","value":"v2"},{"title":"T3","value":"v3"}]' value="v1,v3"></at-form-checkbox-list>
+    </template>
+  </test-fixture>  
+
   <script>
     var xvaluelistJsonStr = '[{"title":"T1","value":"v1"},{"title":"T2","value":"v2"},{"title":"T3","value":"v3"}]';
 
@@ -258,10 +276,162 @@
         // assert that child nodes are not disabled
         Array.prototype.forEach.call(Polymer.dom(elt.$.contentContainer).childNodes, function(node) {
           hasAttrValue(node, 'disabled', '');
-        });     
+        });
       });
     });
 
+    suite('hidden state', function() {
+      test('hidden', function() {
+        var elt = fixture('hidden');
+        assert.equal(elt.hide, true);
+
+        hasDisplayPropValue(elt.$.atContainer, 'none');
+        
+        elt.hide = false;
+        hasDisplayPropValue(elt.$.atContainer, 'block');
+      });
+
+      test('hidden props', function() {
+        var elt = fixture('initial');
+        elt.hide = true;
+
+        assert.equal(elt.hide, true);
+        hasDisplayPropValue(elt.$.atContainer, 'none');
+
+        elt.hide = false;
+        hasDisplayPropValue(elt.$.atContainer, 'block');
+      });
+    });
+
+    suite('required state', function() {
+      test('required', function() {
+        var elt = fixture('required');
+
+        assert.deepEqual(elt.xvaluelist, xvaluelist);
+        assert.equal(elt.required, true);
+
+        var isValid = elt.validate();
+        assert.equal(isValid, false);
+
+        hasClass(elt.$.label, 'error', false);
+
+        Array.prototype.forEach.call(Polymer.dom(elt.$.contentContainer).childNodes, function(node) {
+          hasClass(node, 'error', false);
+        });
+
+        hasClass(elt.$.hint, 'error', false);
+        assert.equal(elt.$.hint.innerHTML, '');
+
+        var isValid = elt.validate(true);
+        assert.equal(isValid, false);
+
+        hasClass(elt.$.label, 'error', true);
+
+        Array.prototype.forEach.call(Polymer.dom(elt.$.contentContainer).childNodes, function(node) {
+          hasClass(node, 'error', true);
+        });
+
+        hasClass(elt.$.hint, 'error', true);
+        assert.equal(elt.$.hint.innerHTML, 'This field is required.');
+
+        elt.required = false;
+
+        var isValid = elt.validate(true);
+        assert.equal(isValid, true);
+
+        hasClass(elt.$.label, 'error', false);
+
+        Array.prototype.forEach.call(Polymer.dom(elt.$.contentContainer).childNodes, function(node) {
+          hasClass(node, 'error', false);
+        });
+
+        hasClass(elt.$.hint, 'error', false);
+        assert.equal(elt.$.hint.innerHTML, '');
+      });
+
+      test('required props', function() {
+        var elt = fixture('initial');
+        elt.xvaluelist = xvaluelist;
+        elt.required = true;
+
+        assert.deepEqual(elt.xvaluelist, xvaluelist);
+        assert.equal(elt.required, true);
+
+        var isValid = elt.validate();
+        assert.equal(isValid, false);
+
+        hasClass(elt.$.label, 'error', false);
+
+        Array.prototype.forEach.call(Polymer.dom(elt.$.contentContainer).childNodes, function(node) {
+          hasClass(node, 'error', false);
+        });
+
+        hasClass(elt.$.hint, 'error', false);
+        assert.equal(elt.$.hint.innerHTML, '');
+
+        var isValid = elt.validate(true);
+        assert.equal(isValid, false);
+
+        hasClass(elt.$.label, 'error', true);
+
+        Array.prototype.forEach.call(Polymer.dom(elt.$.contentContainer).childNodes, function(node) {
+          hasClass(node, 'error', true);
+        });
+
+        hasClass(elt.$.hint, 'error', true);
+        assert.equal(elt.$.hint.innerHTML, 'This field is required.');
+
+        elt.required = false;
+
+        var isValid = elt.validate(true);
+        assert.equal(isValid, true);
+
+        hasClass(elt.$.label, 'error', false);
+
+        Array.prototype.forEach.call(Polymer.dom(elt.$.contentContainer).childNodes, function(node) {
+          hasClass(node, 'error', false);
+        });
+
+        hasClass(elt.$.hint, 'error', false);
+        assert.equal(elt.$.hint.innerHTML, '');
+      });
+    });
+
+    suite('set initial value', function() {
+      test('initial value', function() {
+        var elt = fixture('setValue');
+
+        assert.deepEqual(elt.xvaluelist, xvaluelist);
+        assert.equal(elt.value, "v1,v3");
+
+        assert.equal(Polymer.dom(elt.$.contentContainer).childNodes.length, 3);
+        Array.prototype.forEach.call(Polymer.dom(elt.$.contentContainer).childNodes, function(node) {
+          if (["v1", "v3"].indexOf(node.name) > -1) {
+            hasAttrValue(node, 'checked', '');
+          } else {
+            hasAttrValue(node, 'checked', null);
+          }
+        });
+      });
+      
+      test('initial value props', function() {
+        var elt = fixture('initial');
+        elt.xvaluelist = xvaluelist;
+        elt.value = "v1,v3";
+
+        assert.deepEqual(elt.xvaluelist, xvaluelist);
+        assert.equal(elt.value, "v1,v3");
+
+        assert.equal(Polymer.dom(elt.$.contentContainer).childNodes.length, 3);
+        Array.prototype.forEach.call(Polymer.dom(elt.$.contentContainer).childNodes, function(node) {
+          if (["v1", "v3"].indexOf(node.name) > -1) {
+            hasAttrValue(node, 'checked', '');
+          } else {
+            hasAttrValue(node, 'checked', null);
+          }
+        });
+      });      
+    });
   </script>
 </body>
 
