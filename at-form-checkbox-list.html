@@ -22,6 +22,10 @@
         --paper-checkbox-label-color: var(--at-error-color);
       }
 
+      .checkbox-list-item {
+        padding: 8px;
+      }
+
       .at-content-container {
         @apply(--layout-vertical);
       }
@@ -251,6 +255,7 @@
       
       this._internalValueList.forEach(function(item) {
         var fieldHtml = document.createElement('paper-checkbox');
+        Polymer.dom(fieldHtml).classList.add('checkbox-list-item');
         Polymer.dom(fieldHtml).innerHTML = item.title;
         Polymer.dom(fieldHtml).setAttribute('name', item.value);
         this.toggleAttribute('disabled', this.disabled, fieldHtml);
