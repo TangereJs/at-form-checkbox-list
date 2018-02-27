@@ -233,6 +233,9 @@
       this._internalValueUpdate = true;
       this.value = this._internalValue.join(',');
       this._internalValueUpdate = false;
+
+      this.validate();
+
       this.fire('value-changed', { value: this.value }, { bubbles: false });
     },
 
