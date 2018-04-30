@@ -237,7 +237,7 @@
 
       this.validate();
 
-      this.fire('value-changed', { value: this.value }, { bubbles: false });
+      this._fireValueChangedEvent(this.value);
     },
 
     _valueChanged: function(newValue, oldValue) {
