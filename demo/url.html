@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>at-form-checkbox-list demo page</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../at-doc-snippet/at-doc-snippet.html" />
+  <link rel="import" href="../at-form-checkbox-list.html">
+  
+  <style>
+    .row {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .row-item {
+      flex:1;
+      margin: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h4>Checkbox list with url</h4>
+    <at-doc-snippet>
+      <template>
+        <at-form-checkbox-list
+          url="http://localhost:2014/api/adenin.Gatekeeper.Content/role?pageSize=8"
+        ></at-form-checkbox-list>
+      </template>
+    </at-doc-snippet>
+  </div>
+  
+  <div>
+    <h4>Checkbox list with url and value</h4>
+    <at-doc-snippet>
+      <template>
+        <at-form-checkbox-list
+          url="http://localhost:2014/api/adenin.Gatekeeper.Content/role?pageSize=8"
+          value="2"
+        ></at-form-checkbox-list>
+      </template>
+    </at-doc-snippet>
+  </div>
+
+  <div class="row">
+    <at-form-checkbox-list id="test1" class="row-item"></at-form-checkbox-list>
+    <at-form-checkbox-list id="test2" class="row-item" url="http://localhost:2014/api/adenin.Gatekeeper.Content/role?pageSize=8"></at-form-checkbox-list>
+    <at-form-checkbox-list id="test3" class="row-item" value="2"></at-form-checkbox-list>
+  </div>
+  
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      var test1 = document.getElementById('test1');
+      test1.url = "http://localhost:2014/api/adenin.Gatekeeper.Content/role?pageSize=8";
+      test1.value = "3";
+
+      var test2 = document.getElementById('test2');
+      test2.value = "4";
+
+      var test3 = document.getElementById('test3');
+      test3.url = "http://localhost:2014/api/adenin.Gatekeeper.Content/role?pageSize=8";
+
+    });
+  </script>
+</body>
+
+</html>

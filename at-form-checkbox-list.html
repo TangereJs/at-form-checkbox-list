@@ -5,6 +5,8 @@
 <link rel="import" href="at-form-checkbox-list-input-validation.html">
 <link rel="import" href="../iron-label/iron-label.html">
 <link rel="import" href="../paper-checkbox/paper-checkbox.html" />
+<link rel="import" href="../at-core-activity/at-core-activity.html">
+
 
 <dom-module id="at-form-checkbox-list">
   <template>
@@ -35,6 +37,8 @@
       <div id="contentContainer" class="at-content-container" on-change="_handleCheckChangedEvent"></div>
       <div id="hint"></div>
     </div>
+    <at-core-view id="placeholder" view="[[placeholder]]" hidden></at-core-view>
+    <at-core-activity id="coreActivity" url="[[url]]" on-response="_handleCoreActivityResponse" on-error="_handleCoreActivityError"></at-core-activity>
   </template>
 </dom-module>
 <script>
@@ -149,7 +153,21 @@
         layout: 'horizontal',
         title: 'Value List',
         xgridcols: '12'
-      }
+      },
+
+      url: {
+        type: String,
+        value: '',
+        observer: '_urlChanged'
+      },
+
+      placeholder: {
+        type: String,
+        value: "<div class='m'> <div class='placeholder-text'></div><div class='placeholder-text mtsm'></div></div>",
+        xtype: 'code',
+        xgridcols: "12",
+        mode: "html"
+      },
     },
 
     observers: [
@@ -334,12 +352,41 @@
 
       return result;
     },
-    _isArray: function(object) {
-      return Object.prototype.toString.call(object) === '[object Array]';
+
+    _urlChanged: function(newValue, oldValue) {
+      if (!this._isString(newValue)) return;
+      if (!newValue.length) return;
+
+      Polymer.dom(this.$.placeholder).removeAttribute('hidden');
+      this.$.coreActivity.generateRequest();
     },
-    _isString: function(object) {
-      return Object.prototype.toString.call(object) === '[object String]';
-    }
+
+    _handleCoreActivityError: function(event) {
+    },
+
+    _handleCoreActivityResponse: function(event) {
+      var data = event.detail.Data;
+      if (!this._isObject(data)) return;
+      if (!this._isArray(data.items)) return;
+
+      var xvaluelist = [];
+      data.items.forEach(function(item) {
+        var tmp = {
+          title: item.title,
+          value: item.id.toString()
+        }
+        xvaluelist.push(tmp);
+      });
+
+      this._xvaluelistChanged(xvaluelist);
+      Polymer.dom.flush();
+      var placeholder = this.$.placeholder;
+      Polymer.dom(placeholder).setAttribute('hidden', true);
+    },
+
+    _isArray: function(object) { return Object.prototype.toString.call(object) === '[object Array]'; },
+    _isString: function(object) { return Object.prototype.toString.call(object) === '[object String]'; },
+    _isObject: function(obj) { return Object.prototype.toString.call(obj) === "[object Object]"; }
 
   });
 </script>
