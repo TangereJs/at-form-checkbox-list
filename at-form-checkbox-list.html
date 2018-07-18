@@ -181,8 +181,27 @@
       icon: "now:checklist"
     }],
 
-    _internalValue: [],
-    _internalValueList: [],
+    get _internalValue() {
+      if (!this.__internalValue) {
+        this.__internalValue = [];
+      }
+      return this.__internalValue;
+    },
+
+    set _internalValue(value) {
+      this.__internalValue = value;
+    },
+
+    get _internalValueList() {
+      if (!this.__internalValueList) {
+        this.__internalValueList = [];
+      }
+      return this.__internalValueList;
+    },
+
+    set _internalValueList(value) {
+      this.__internalValueList = value;
+    },
 
     _hideLabelChanged: function(newValue, oldValue) {
       this.toggleAttribute("hidden", newValue, this.$.label);
