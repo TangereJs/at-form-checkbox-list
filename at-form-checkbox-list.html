@@ -147,6 +147,10 @@
                 type: "string",
                 title: "Title"
               },
+              disabled: {
+                type: "boolean",
+                title: "Disabled"
+              }
             }
           }
         },
@@ -217,7 +221,15 @@
 
       var checkboxes = Polymer.dom(this.$.contentContainer).querySelectorAll('paper-checkbox');
       Array.prototype.forEach.call(checkboxes, function(checkbox) {
-        this.toggleAttribute('disabled', newValue, checkbox);
+        var found = false;
+
+        for (var i = 0; i < this._internalValueList.length && !found; i++) {
+          var item = this._internalValueList[i];
+          found = item.value == checkbox.getAttribute('name') ? item : false;
+        }
+
+        var isDisabled = newValue || found.disabled;
+        this.toggleAttribute('disabled', isDisabled, checkbox);
       }, this);
     },
 
@@ -321,7 +333,8 @@
         Polymer.dom(fieldHtml).classList.add('checkbox-list-item');
         Polymer.dom(fieldHtml).innerHTML = item.title;
         Polymer.dom(fieldHtml).setAttribute('name', item.value);
-        this.toggleAttribute('disabled', this.disabled, fieldHtml);
+        var isDisabled = this.disabled || item.disabled;
+        this.toggleAttribute('disabled', isDisabled, fieldHtml);
 
         Polymer.dom(this.$.contentContainer).appendChild(fieldHtml);
       }, this);
