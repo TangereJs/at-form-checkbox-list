@@ -333,8 +333,10 @@
         Polymer.dom(fieldHtml).classList.add('checkbox-list-item');
         Polymer.dom(fieldHtml).innerHTML = item.title;
         Polymer.dom(fieldHtml).setAttribute('name', item.value);
-        var isDisabled = this.disabled || item.disabled;
-        isDisabled = isDisabled == "false" ? false : true;
+        
+        var isDisabled = item.disabled == true || item.disabled == "true" ? true : false;
+        isDisabled = this.disabled || isDisabled;
+        
         this.toggleAttribute('disabled', isDisabled, fieldHtml);
 
         Polymer.dom(this.$.contentContainer).appendChild(fieldHtml);
