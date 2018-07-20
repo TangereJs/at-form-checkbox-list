@@ -1,0 +1,12 @@
+{
+  "Data": {
+    "items": [
+      { "title": "Title 1", "value": "v1", "disabled": "true" },
+      { "title": "Title 2", "value": "v2" },
+      { "title": "Title 3", "value": "v3", "disabled": "false" },
+      { "title": "Title 4", "value": "v4" },
+      { "title": "Title 5", "value": "v5", "disabled": "true" },
+      { "title": "Title 6", "value": "v6" }
+    ]
+  }
+}
