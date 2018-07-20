@@ -7,6 +7,8 @@
   <title>at-form-checkbox-list demo page</title>
 
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../polymer/polymer.html">
+  <link rel="import" href="../../tangere/tangere.html">
   <link rel="import" href="../../at-doc-snippet/at-doc-snippet.html" />
   <link rel="import" href="../at-form-checkbox-list.html">
   
@@ -20,28 +22,32 @@
     <at-doc-snippet>
       <template>
         <at-form-checkbox-list
-          xvaluelist='[{"title":"Title 1","value":"v1","disabled":"true"},{"title":"Title 2","value":"v2","disabled":"true"},{"title":"Title 3","value":"v3"},{"title":"Title 4","value":"v4"},{"title":"Title 5","value":"v5"},{"title":"Title 6","value":"v6"}]''
+          xvaluelist='[{"title":"Title 1","value":"v1","disabled":"true"},{"title":"Title 2","value":"v2","disabled":"true"},{"title":"Title 3","value":"v3"},{"title":"Title 4","value":"v4"},{"title":"Title 5","value":"v5"},{"title":"Title 6","value":"v6"}]'
           value="v1,v3,v5"
         ></at-form-checkbox-list>
       </template>
     </at-doc-snippet>
+
+
+    <h4>Checkbox list with xvaluelist and value and disabled items in xvaluelist</h4>
+    <at-form-checkbox-list id="elt"></at-form-checkbox-list>
   </div>
 
   <script>
     document.addEventListener('WebComponentsReady', function() {
       var xvaluelist = [
-        { title: 'Title 1', value: 'v1' },
+        { title: 'Title 1', value: 'v1', disabled: "true" },
         { title: 'Title 2', value: 'v2' },
-        { title: 'Title 3', value: 'v3' },
+        { title: 'Title 3', value: 'v3', disabled: "false" },
         { title: 'Title 4', value: 'v4' },
-        { title: 'Title 5', value: 'v5' },
+        { title: 'Title 5', value: 'v5', disabled: true },
         { title: 'Title 6', value: 'v6' },
       ];
       var value = 'v1,v3,v5';
 
-      // var elt = document.getElementById('elt');
-      // elt.xvaluelist = xvaluelist;
-      // elt.value = value;
+      var elt = document.getElementById('elt');
+      elt.xvaluelist = xvaluelist;
+      elt.value = value;
     });
   </script>
 </body>
