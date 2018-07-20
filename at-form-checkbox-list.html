@@ -423,16 +423,7 @@
       if (!this._isObject(data)) return;
       if (!this._isArray(data.items)) return;
 
-      var xvaluelist = [];
-      data.items.forEach(function(item) {
-        var tmp = {
-          title: item.title,
-          value: item.id.toString()
-        }
-        xvaluelist.push(tmp);
-      });
-
-      this._xvaluelistChanged(xvaluelist);
+      this._xvaluelistChanged(data);
       Polymer.dom.flush();
       var placeholder = this.$.placeholder;
       Polymer.dom(placeholder).setAttribute('hidden', true);
