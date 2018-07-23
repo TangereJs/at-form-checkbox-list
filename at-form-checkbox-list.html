@@ -426,6 +426,10 @@
       if (!this._isObject(data)) return;
       if (!this._isArray(data.items)) return;
 
+      data.items.forEach(function(item) {
+        item.value = new String(item.id);
+      });
+
       this._xvaluelistChanged(data.items);
       Polymer.dom.flush();
       var placeholder = this.$.placeholder;
