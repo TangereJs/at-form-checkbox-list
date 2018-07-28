@@ -427,7 +427,7 @@
       if (!this._isArray(data.items)) return;
 
       data.items.forEach(function(item) {
-        if(!item.value) item.value = String(item.id);
+        if(item.value == undefined) item.value = String(item.id);
       });
 
       this._xvaluelistChanged(data.items);
