@@ -6,8 +6,8 @@
     "at-theme": "TangereJs/at-theme#master",
     "at-i18n": "TangereJs/at-i18n#master",
     "at-form-behaviors": "TangereJs/at-form-behaviors#master",
-    "paper-checkbox": "PolymerElements/paper-checkbox#^1.x",
-    "iron-label": "PolymerElements/iron-label#^1.x",
+    "paper-checkbox": "PolymerElements/paper-checkbox#^2.0.0",
+    "iron-label": "PolymerElements/iron-label#^2.0.0",
     "at-doc-viewer": "TangereJs/at-doc-viewer#master"
   },
   "version": "1.0.0.2"
